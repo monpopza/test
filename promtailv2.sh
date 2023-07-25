@@ -35,7 +35,7 @@ data:
         source_labels:
         - __service__
       - action: drop
-        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
+        regex: gatekeeper-system|kube-system|kube-public|default|kube-node-lease
         source_labels:
         - __meta_kubernetes_namespace
       - action: replace
@@ -84,7 +84,7 @@ data:
         source_labels:
         - __service__
       - action: drop
-        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
+        regex: gatekeeper-system|kube-system|kube-public|default|kube-node-lease
         source_labels:
         - __meta_kubernetes_namespace
       - action: replace
