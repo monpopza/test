@@ -41,7 +41,7 @@ data:
         - __meta_kubernetes_namespace
       - action: drop
         source_labels:
-	    regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
+        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
         - __meta_kubernetes_namespace
         target_label: job
       - action: replace
