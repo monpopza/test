@@ -25,10 +25,6 @@ data:
       - role: pod
       relabel_configs:
       - source_labels:
-        - __meta_kubernetes_namespace
-        regex: ^(mobile-be|ingress-basic|ceda-mdm)$
-        target_label: __tmp_filter_namespace
-      - source_labels:
         - __meta_kubernetes_pod_label_name
         target_label: __service__
       - source_labels:
@@ -38,6 +34,10 @@ data:
         regex: ^$
         source_labels:
         - __service__
+      - action: drop
+        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
+        source_labels:
+        - __meta_kubernetes_namespace
       - action: replace
         replacement: $1
         separator: /
@@ -83,6 +83,10 @@ data:
         regex: ^$
         source_labels:
         - __service__
+      - action: drop
+        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
+        source_labels:
+        - __meta_kubernetes_namespace
       - action: replace
         replacement: $1
         separator: /
