@@ -3,7 +3,7 @@
 INSTANCEID="${1:-}"
 APIKEY="${2:-}"
 INSTANCEURL="${3:-}"
-NAMESPACE="${4:-default}"
+NAMESPACE="${4:-loki}"
 CONTAINERROOT="${5:-/var/lib/docker}"
 PARSER="${6:-- docker:}"
 VERSION="${PROMTAIL_VERSION:-2.7.1}"
