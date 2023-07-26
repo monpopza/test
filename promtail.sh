@@ -3,7 +3,7 @@
 INSTANCEID="${1:-}"
 APIKEY="${2:-}"
 INSTANCEURL="${3:-}"
-NAMESPACE="${4:-default}"
+NAMESPACE="${4:-loki}"
 CONTAINERROOT="${5:-/var/lib/docker}"
 PARSER="${6:-- docker:}"
 VERSION="${PROMTAIL_VERSION:-2.7.1}"
@@ -39,10 +39,7 @@ data:
         separator: /
         source_labels:
         - __meta_kubernetes_namespace
-      - action: drop
-        source_labels:
-        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
-        - __meta_kubernetes_namespace
+        - __service__
         target_label: job
       - action: replace
         source_labels:
@@ -69,7 +66,7 @@ data:
       - role: pod
       relabel_configs:
       - action: drop
-        regex: .+
+        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
         source_labels:
         - __meta_kubernetes_pod_label_name
       - source_labels:
@@ -114,7 +111,7 @@ data:
       - role: pod
       relabel_configs:
       - action: drop
-        regex: .+
+        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
         separator: ''
         source_labels:
         - __meta_kubernetes_pod_label_name
@@ -165,7 +162,7 @@ data:
       - role: pod
       relabel_configs:
       - action: drop
-        regex: .+
+        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
         separator: ''
         source_labels:
         - __meta_kubernetes_pod_label_name
@@ -371,6 +368,3 @@ echo "${TEMPLATE}" | sed \
   -e "s#<container_root_path>#${CONTAINERROOT}#" \
   -e "s#<parser>#${PARSER}#" \
   -e "s#<version>#${VERSION}#"
-
-
-#testing edit
