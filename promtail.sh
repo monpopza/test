@@ -65,6 +65,7 @@ data:
         - __meta_kubernetes_namespace
       - action: drop
         regex: (def.*$|gate.*$|kube.*$)
+        source_labels:
         - __meta_kubernetes_namespace
     - pipeline_stages:
       <parser>
