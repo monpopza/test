@@ -66,7 +66,7 @@ data:
       - role: pod
       relabel_configs:
       - action: drop
-        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
+        regex: .+
         source_labels:
         - __meta_kubernetes_pod_label_name
       - source_labels:
@@ -111,7 +111,7 @@ data:
       - role: pod
       relabel_configs:
       - action: drop
-        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
+        regex: .+
         separator: ''
         source_labels:
         - __meta_kubernetes_pod_label_name
@@ -162,7 +162,7 @@ data:
       - role: pod
       relabel_configs:
       - action: drop
-        regex: ^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$
+        regex: .+
         separator: ''
         source_labels:
         - __meta_kubernetes_pod_label_name
