@@ -256,7 +256,7 @@ data:
         target_label: __path__
     value: |
         config:
-          snippets:
+        snippets:
             pipelineStages:
             - drop:
                 source:     "namespace"
