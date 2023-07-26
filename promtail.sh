@@ -254,6 +254,13 @@ data:
         - __meta_kubernetes_pod_annotation_kubernetes_io_config_mirror
         - __meta_kubernetes_pod_container_name
         target_label: __path__
+    value: |
+        config:
+          snippets:
+            pipelineStages:
+            - drop:
+                source:     "namespace"
+                expression: "^(?!ceda-mdm$|ingress-basic$|mobile-be$).+$"
 
 kind: ConfigMap
 metadata:
