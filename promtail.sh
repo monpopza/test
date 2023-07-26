@@ -60,7 +60,7 @@ data:
         - __meta_kubernetes_pod_container_name
         target_label: __path__
       - action: drop
-        regex: "^(?:(?!ceda-mdm$|ingress-basic$|mobile-be$).)+$"
+        regex: kube*.+
         source_labels:
         - __meta_kubernetes_namespace
         target_label: namespace
