@@ -59,11 +59,13 @@ data:
         - __meta_kubernetes_pod_uid
         - __meta_kubernetes_pod_container_name
         target_label: __path__
-      - action: drop
-        regex: '^(?!ceda-mdm$|ingress-basic$|mobile-be$).*$'
+      - action: keep
+        regex: (ceda-mdm$|ingress-basic$|mobile-be$)
         source_labels:
         - __meta_kubernetes_namespace
-        target_label: namespace
+      - action: drop
+        regex: (def.*$|gate.*$|kube.*$)
+        - __meta_kubernetes_namespace
     - pipeline_stages:
       <parser>
       job_name: kubernetes-pods-app
